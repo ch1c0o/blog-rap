@@ -53,12 +53,8 @@ class PostTable
 
     public function delete(int $id): void
     {
-      $sth = $this->db->prepare("DELETE {$this->table} WHERE id = :id");
+      $sth = $this->db->prepare("DELETE FROM {$this->table} WHERE id = :id");
       $sth->bindParam(':id', $id);
       $result = $sth->execute();
-
-      if (!$result) {
-          throw new Exception("Error during delete with the table {$this->table}");
-        }
     }
 }

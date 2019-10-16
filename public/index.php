@@ -13,6 +13,12 @@ if (isset($_POST['title']) && isset($_POST['content'])) {
 
 $posts = $pt->all();
 
+if (!empty($_GET['id'])) {
+  $getid = $_GET['id'];
+  $pt->delete($getid);
+  header("location:index.php");
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -24,11 +30,12 @@ $posts = $pt->all();
 <body>
     <div class="container">
         <h1 class="text-center">BLOG RAP</h1>
-        <div class="row">          
+        <div class="row">
            <?php foreach($posts as $post): ?>
                 <div class="col-md-4">
                     <h2><?= $post['title'] ?></h2>
                     <p><?= $post['content'] ?></p>
+                    <a href="index.php?id=<?= $post['id'] ?> "class="btn btn-danger btn-rounded">Supprimer</a>
                 </div>
             <?php endforeach; ?>
         </div>
