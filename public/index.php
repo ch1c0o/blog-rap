@@ -1,26 +1,3 @@
-<?php
-
-require_once '../includes/config.php';
-
-$pt = new PostTable();
-
-if (isset($_POST['title']) && isset($_POST['content'])) {
-    $post = new Post();
-    $post->setTitle($_POST['title']);
-    $post->setContent($_POST['content']);
-    $pt->create($post);
-}
-
-$posts = $pt->all();
-
-if (!empty($_GET['id'])) {
-  $getid = $_GET['id'];
-  $pt->delete($getid);
-  header("location:index.php");
-}
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,6 +8,7 @@ if (!empty($_GET['id'])) {
     <div class="container">
         <h1 class="text-center">BLOG RAP</h1>
         <div class="row">
+          <?php require_once 'create.php';?>
            <?php foreach($posts as $post): ?>
                 <div class="col-md-4">
                     <h2><?= $post['title'] ?></h2>

@@ -18,7 +18,6 @@ if (!empty($_POST['Modifier'])){
         $post->setId($id);
         $pt->update($post);
         header('location:index.php');
-
     }
 }
 ?>
