@@ -8,19 +8,16 @@ ini_set('display_errors', 'On');
 $pt = new PostTable();
 
 $id = $_GET['id'];
-
 $objet = $pt->get($id);
 
 if (!empty($_POST['Modifier'])){
     if(!empty($_POST['title'] && !empty($_POST['content']))) {
-
         $post = new Post();
         $post->setTitle($_POST['title']);
         $post->setContent($_POST['content']);
         $post->setId($id);
         $pt->update($post);
-
-        header('location:../index.php');
+        header('location:index.php');
 
     }
 }
@@ -41,12 +38,13 @@ if (!empty($_POST['Modifier'])){
             <form action="" method="POST">
                 <div class="form-group">
                     <label for="title">Titre</label>
-                    <input type="text" class="form-control" name="title">
+                    <input type="text" name="title" value="<?= $objet->getTitle() ?>">
                 </div>
                 <div class="form-group">
-                    <label for="title">Contenu</label>
-                    <textarea class="form-control" name="content"></textarea>
+                    <label for="content">Contenu</label>
+                    <textarea name="content" id="content" cols="50" rows="5"><?= $objet->getContent() ?></textarea>
                 </div>
-                <a href="index.php" class="btn btn-danger btn-rounded">Modifier</a>
+                <input type="submit" name="Modifier" class="btn btn-danger btn-rounded" value="Modifier">
+          </form>
 </body>
 </html>

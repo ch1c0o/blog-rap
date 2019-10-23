@@ -35,7 +35,7 @@ if (!empty($_GET['id'])) {
                 <div class="col-md-4">
                     <h2><?= $post['title'] ?></h2>
                     <p><?= $post['content'] ?></p>
-                    <a href="Modifier.php" class="btn btn-danger btn-rounded">Modifier</a>
+                    <a href="Modifier.php?id=<?= $post['id']?>" class="btn btn-danger">Modifier</a>
                     <a href="index.php?id=<?= $post['id'] ?> "class="btn btn-danger btn-rounded">Supprimer</a>
                 </div>
             <?php endforeach; ?>
